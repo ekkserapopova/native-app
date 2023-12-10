@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DocumentsScreen from './screens/DocumentsScreen';
+import DocumentScreen from './screens/DocumentScreen';
+import { store } from './store';
+import { Provider } from 'react-redux';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <Provider store={store}>
+            {/* <Navigation /> */}
+            <NavigationContainer>
+            <Stack.Navigator
+                screenOptions={{
+                    headerStyle: {
+                    backgroundColor: '#1F3E47', // Цвет навигационной шапки
+                    },
+                    headerTintColor: 'aliceblue', // Цвет текста в навигационной шапке
+                    headerTitleStyle: {
+                    fontWeight: 'bold',
+                    },
+                }}
+                >
+                    <Stack.Screen name='Документы' component={DocumentsScreen} />
+                    <Stack.Screen name='Подробности' component={DocumentScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </Provider>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
