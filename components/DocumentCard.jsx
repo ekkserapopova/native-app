@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     btn_text: {
         color: '#35525A',
         textAlign: 'center',
-        fontSize: 8,
+        fontSize: 10,
     },
     container_pricebtn:{
         display: 'flex',
