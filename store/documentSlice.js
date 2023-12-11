@@ -12,7 +12,7 @@ export const documentSlice = createSlice({
         setDocuments: (state, { payload }) => {
             console.log('setDocuments');
             state.documents = payload;
-            console.log(payload)
+            // console.log(payload)
         },
         setDocument: (state, { payload }) => {
             console.log('setDocument');
