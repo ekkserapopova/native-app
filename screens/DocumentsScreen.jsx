@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../api';
 import { setDocuments } from '../store/documentSlice';
 import DocumentCard from '../components/DocumentCard';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function DocumentsScreen({ navigation }) {
@@ -24,17 +25,19 @@ export default function DocumentsScreen({ navigation }) {
       }
     };
   
-    useEffect(() => {
-      async function getAllDocuments() {
-        try {
-          const response = await axiosInstance.get('/documents');
-          dispatch(setDocuments(response?.data));
-        } catch (error) {
-          console.error('Error fetching documents:', error);
+    useFocusEffect(
+      React.useCallback(() => {
+        async function getAllDocuments() {
+          try {
+            const response = await axiosInstance.get('/documents');
+            dispatch(setDocuments(response?.data));
+          } catch (error) {
+            console.error('Error fetching documents:', error);
+          }
         }
-      }
-      getAllDocuments();
-    }, [dispatch]);
+        console.log('useeff');
+        getAllDocuments();
+      }, [dispatch]))
   
     return (
       <ScrollView style={styles.container}>
